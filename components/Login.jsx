@@ -7,8 +7,8 @@ export default function Login({ setToken }) {
 
     async function handleLogin() {
         const data = await login(username, password);
-        if (data.token) {
-            setToken(data.token);
+        if (data.accessToken) {
+            setToken(data.accessToken);
         }
         console.log(data);
     }
