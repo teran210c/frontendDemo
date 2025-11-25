@@ -94,3 +94,17 @@ export async function deleteAccount(token) {
     return res.json();
 }
 
+export async function logout() {
+    // Aviso al backend para invalidar el refresh token
+    await authorizedFetch(`${API_URL}/auth/logout`, {
+        method: "POST",
+    });
+
+    // Borro tokens en memoria y en localStorage
+    accessToken = null;
+    refreshToken = null;
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+
+    return { message: "logged out" };
+}
